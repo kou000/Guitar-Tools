@@ -1,0 +1,60 @@
+/* ベース */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0; font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"; color:#1a1f36; background:#f7f9fc}
+.container{max-width:960px; margin:0 auto; padding:0 16px}
+
+/* ヘッダー＆タブ */
+.appbar{position:sticky; top:0; background:#fff; border-bottom:1px solid #e5e9f2; z-index:10}
+.appbar-inner{display:flex; align-items:center; justify-content:space-between; height:72px}
+.brand{font-size:22px; font-weight:800; letter-spacing:.2px}
+.tabs{display:flex; gap:18px}
+.tab{appearance:none; background:transparent; border:none; font:inherit; color:#3a4762; padding:8px 4px; cursor:pointer; position:relative}
+.tab.is-active{color:#1a73e8}
+.tab.is-active::after{content:''; position:absolute; left:0; right:0; bottom:-12px; height:3px; background:#1a73e8; border-radius:2px}
+
+/* パネル／カード */
+main{padding:28px 0}
+.panel{display:none}
+.panel.is-active{display:block; animation:fade .25s ease}
+@keyframes fade{from{opacity:.6; transform:translateY(4px)} to{opacity:1; transform:translateY(0)}}
+.card{background:#fff; border:1px solid #e6ebf2; border-radius:16px; box-shadow:0 8px 28px rgba(16,24,40,.08)}
+.card-body{padding:24px 20px}
+.section-title{margin:8px 0 12px; font-size:18px; color:#3a4762}
+
+/* ボタン */
+.btn{appearance:none; border:1px solid #d7deea; background:#f4f7fb; color:#27324b; padding:10px 14px; border-radius:12px; font-weight:600; cursor:pointer; transition:.2s transform,.2s background,.2s box-shadow}
+.btn:hover{transform:translateY(-1px); box-shadow:0 4px 14px rgba(16,24,40,.10)}
+.btn:disabled{opacity:.55; cursor:not-allowed}
+.btn.primary{border-color:transparent; background:#1a73e8; color:#fff}
+.cta{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+
+/* チューナー表示 */
+.readouts{display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:8px}
+.pitch{font-size:56px; font-weight:800; line-height:1.1}
+.freq,.cents{font-size:22px; color:#3a4762}
+.unit{font-size:.8em; color:#66708a}
+
+/* ゲージ（±50¢ 針） */
+.gauge{position:relative; margin:20px auto; width:420px; max-width:92%; height:190px}
+.gauge-arc{position:absolute; left:0; right:0; bottom:36px; height:140px; border-bottom-left-radius:280px; border-bottom-right-radius:280px; background:conic-gradient(from 180deg, #e9eef6 0deg, #e9eef6 180deg); mask: radial-gradient(200px 200px at 50% 100%, transparent 64%, #000 64%)}
+.needle{position:absolute; left:50%; bottom:36px; width:10px; height:120px; transform-origin:50% 100%; transform:translateX(-50%) rotate(0deg); background:linear-gradient(#6f7a88,#2f3744); border-radius:6px}
+.gauge-min,.gauge-max{position:absolute; bottom:4px; font-size:16px; color:#505b75}
+.gauge-min{left:18px} .gauge-max{right:18px}
+
+/* メトロノーム */
+.controls{display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin:4px 0 8px}
+.field{display:flex; flex-direction:column; gap:6px}
+.field .label{font-size:12px; color:#66708a}
+#bpm{width:100%}
+output{font-weight:700; margin-left:6px; color:#1a73e8}
+.leds{display:flex; gap:10px; min-height:24px; margin-top:10px}
+.leds .led{width:14px; height:14px; border-radius:50%; background:#e6ebf2; border:1px solid #dfe6f2}
+.leds .led.active{background:#1a73e8}
+
+/* フッター */
+.footer{margin:20px 0 28px; color:#7b859d}
+
+@media (max-width:700px){
+  .controls{grid-template-columns:1fr}
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guitar Tools — チューナー & メトロノーム</title>
+  <meta name="description" content="ブラウザで使えるギターチューナーとメトロノーム。Web Audio API + YIN/CMNDF。">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="appbar">
+    <div class="container appbar-inner">
+      <div class="brand">Guitar Tools</div>
+      <nav class="tabs" role="tablist" aria-label="タブ切替">
+        <button id="tab-tuner" class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-tuner">チューナー</button>
+        <button id="tab-metronome" class="tab" role="tab" aria-controls="panel-metronome">メトロノーム</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- チューナー -->
+    <section id="panel-tuner" class="panel is-active" role="tabpanel" aria-labelledby="tab-tuner">
+      <div class="card">
+        <div class="card-body">
+          <div class="cta">
+            <button id="enableMic" class="btn primary">🎙 マイクを有効化</button>
+            <button id="stopMic" class="btn" disabled>■ 停止</button>
+          </div>
+
+          <div class="readouts">
+            <h2 class="section-title">検出結果</h2>
+            <div class="pitch" id="noteName">--</div>
+            <div class="freq"><span id="freq">--</span> <span class="unit">Hz</span></div>
+            <div class="cents"><span id="cents">--</span> <span class="unit">¢</span></div>
+          </div>
+
+          <div class="gauge" aria-label="ピッチゲージ">
+            <div class="gauge-arc"></div>
+            <div id="needle" class="needle" aria-hidden="true"></div>
+            <div class="gauge-min">−50</div>
+            <div class="gauge-max">+50</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- メトロノーム -->
+    <section id="panel-metronome" class="panel" role="tabpanel" aria-labelledby="tab-metronome">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="section-title">メトロノーム</h2>
+
+          <div class="controls">
+            <label class="field">
+              <span class="label">BPM</span>
+              <input id="bpm" type="range" min="30" max="240" value="100" />
+              <output id="bpmOut">100</output>
+            </label>
+
+            <label class="field">
+              <span class="label">拍子</span>
+              <select id="beats">
+                <option value="2">2/4</option>
+                <option value="3">3/4</option>
+                <option value="4" selected>4/4</option>
+                <option value="6">6/8</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="cta">
+            <button id="startMetro" class="btn primary">▶ スタート</button>
+            <button id="stopMetro" class="btn" disabled>■ ストップ</button>
+          </div>
+
+          <div class="leds" aria-live="polite" aria-atomic="true"></div>
+          <p class="hint">※ 初回はボタンを押してオーディオを開始してください（ブラウザの自動再生制限対応）。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2025 Guitar Tools</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
